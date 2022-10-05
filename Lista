@@ -19,13 +19,18 @@ public class Lista {
         this.fin = null;
     }
     public void imprimir(){
+        if(inicio == null)
+            System.out.println("LISTA VACÍA");
+        else{
         Nodo temp = inicio;
         //¿Cómo muevo a temp?
         while(temp != null){
             System.out.print(temp.getValor() + " - ");
             temp = temp.getSiguiente();
         }
+        System.out.println("");
     }
+}
     
     //AGREGAR UN NODO AL FINAL DE LA LISTA
     //SOLUCION 1: O(N)
@@ -83,7 +88,7 @@ public class Lista {
                     temp = temp.getSiguiente();
                     cont++;
             }
-              //Y ahora
+              //Y ahora que?
                 nuevoNodo.setSiguiente(temp.getSiguiente());
                 temp.setSiguiente(nuevoNodo);
         }
@@ -91,7 +96,21 @@ public class Lista {
         }
         
     }
+    public void vaciarlista(){
+        inicio = null;
+        fin = null;
+    }
+    public void borrarEn(int pos) throws Exception{
+        //Que debemos validar?
+        //Insertar en una posición no válida
+       
+        if(pos < 0)//Posiciones negativas
+            throw new Exception("No puede insertarse un nodo en una posición negativa");
+        else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
+            throw new Exception(pos + " no es una posición valida en la lista");
+        else{
+        
+    }
     
-    
+    }
 }
-
