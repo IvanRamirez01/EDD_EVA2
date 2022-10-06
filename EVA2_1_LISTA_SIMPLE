@@ -25,14 +25,16 @@ public class EVA2_1_LISTA_SIMPLE {
         miLista.agregar(60);//5
         miLista.imprimir();
         
-        try{
+        /*try{
             miLista.insertarEn(70, 3);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         miLista.imprimir();
-        miLista.vaciarlista();
-        miLista.imprimir();
+        miLista.vaciarLista();
+        miLista.imprimir();*/
+        
+        miLista.borrarEn(pos);
             
         /*int[] arreglo = new int[1000000];
        
