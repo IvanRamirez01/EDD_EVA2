@@ -12,14 +12,24 @@ package eva2_1_lista_simple;
 public class Lista {
     private Nodo inicio;
     private Nodo fin;
+    private int cont;
 
     //Por default, la lista esta vacía
     public Lista() {
         this.inicio = null;//No hay nodos en la lista
         this.fin = null;
+        this.cont = 0;
     }
-    public void imprimir(){
+    
+    public boolean listaVacia(){
         if(inicio == null)
+            return true;
+        else
+            return false;
+    }
+    
+    public void imprimir(){
+        if(listaVacia())
             System.out.println("LISTA VACÍA");
         else{
         Nodo temp = inicio;
@@ -54,16 +64,17 @@ public class Lista {
             fin.setSiguiente(nuevoNodo);
             fin = nuevoNodo;
         }
+        cont++;
     }
     public int tamaLista(){
-        int cont = 0;
+        /*int cont = 0;
         Nodo temp = inicio;
         //¿Cómo muevo a temp?
         while(temp != null){
             cont++;
             temp = temp.getSiguiente();
-        }
-        return cont;
+        }*/
+        return this.cont;
     }
 
     
@@ -91,14 +102,15 @@ public class Lista {
               //Y ahora que?
                 nuevoNodo.setSiguiente(temp.getSiguiente());
                 temp.setSiguiente(nuevoNodo);
-        }
-            
+            }
+            this.cont++;
         }
         
     }
     public void vaciarLista(){
         inicio = null;
         fin = null;
+        cont = 0;
     }
     public void borrarEn(int pos) throws Exception{
         int cantNodos=tamaLista();
@@ -136,18 +148,29 @@ public class Lista {
                 }
                     
             }
+                this.cont--;
         }
         
     }
     
     }
     public int obtenValorEn(int pos) throws Exception{
+        int cantNodos = tamaLista();
+        int valor;
         if(pos < 0)//Posiciones negativas
             throw new Exception("No puede insertarse un nodo en una posición negativa");
         else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
             throw new Exception(pos + " no es una posición valida en la lista");
         else{
-            
+            Nodo temp = inicio;
+            int cont = 0;
+            while(cont < pos){ //El cambie es aquí, ya no es: (pos - 1)
+                temp = temp.getSiguiente();
+                cont++;
+            }
+            valor = temp.getValor();
         }   
+        return valor;
     }
 }
+
