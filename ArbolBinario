@@ -12,18 +12,61 @@ package eva2_6_arbol_binario;
 public class ArbolBinario {
     private Nodo root;
 
-    public ArbolBinario(Nodo root) {
+    public ArbolBinario() {
         this.root = null;
     }
     
     //metodo publico para el usuario
     public void agregar(int valor){
-        agregarRecur(valor, root);
+        //1.- EL NODO RECIBIDO EES NULL
+        //Arbol vacío
+        if(root == null)
+            root = new Nodo(valor);
+        else
+            agregarRecur(valor, root);
     }
     
     //metodo recursivo agregar
     //necestia el valor y el nodo actual
     private void agregarRecur(int valor, Nodo nodoActual){
-        
+        //2.- DECIDIR SI VA A IZQ O DER
+        /*
+            Verificar si el lado (nodo) es null
+                si es null, ahi va el valor
+            si no
+                repetir recursióN
+        */
+        Nodo nuevo = new Nodo(valor);
+        if(valor < nodoActual.getValor()){//va a la izq
+            if(nodoActual.getIzquierda() == null)
+                nodoActual.setIzquierda(nuevo);
+            else
+                agregarRecur(valor,nodoActual.getIzquierda());
+        }else if(valor > nodoActual.getValor()){//va a la der
+            if(nodoActual.getDerecha() == null)
+                nodoActual.setDerecha(nuevo);
+            else
+                agregarRecur(valor,nodoActual.getDerecha());
+            
+        }else{//IGUAL
+            System.out.println("ELEMENTO REPETIDO!");
+        }
+
+    }
+    
+    //
+    //
+    //
+    //
+    public void inOrder(){
+        inOrderRecu(root);
+    }
+    //Método privado recursivo
+    private void inOrderRecu(Nodo nodo){
+        if(nodo == null){
+            inOrderRecu(nodo.getIzquierda());
+            System.out.println(nodo.getValor() + " - ");
+            inOrderRecu(nodo.getDerecha());
+        }
     }
 }
