@@ -56,17 +56,42 @@ public class ArbolBinario {
     
     //
     //
-    //
-    //
+    //izq valor der
+    //metodo público
     public void inOrder(){
         inOrderRecu(root);
+        System.out.println("");
     }
     //Método privado recursivo
     private void inOrderRecu(Nodo nodo){
-        if(nodo == null){
+        if(nodo != null){
             inOrderRecu(nodo.getIzquierda());
             System.out.println(nodo.getValor() + " - ");
             inOrderRecu(nodo.getDerecha());
         }
     }
+    public void postOrder(){
+        postOrderRecu(root);
+        System.out.println("");
+    }
+    private void postOrderRecu(Nodo nodo){
+        if(nodo != null){
+            postOrderRecu(nodo.getIzquierda());
+            postOrderRecu(nodo.getDerecha());
+            System.out.println(nodo.getValor() + " - ");
+        }
+    }
+    public void preOrder(){
+        preOrderRecu(root);
+        System.out.println("");
+    }
+    private void preOrderRecu(Nodo nodo){
+        if(nodo != null){
+           System.out.println(nodo.getValor() + " - "); 
+           preOrderRecu(nodo.getIzquierda());
+           preOrderRecu(nodo.getDerecha());
+        }
+    }
+    
+    //COMO BORRAMOS NODOS
 }
